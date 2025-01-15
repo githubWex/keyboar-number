@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import icon from "../../public/icons8-phone.gif"
+import icon from "../../public/icons8-phone.gif";
 
 interface NumericKeyboard {
     onAnswer?: () => void;
@@ -84,8 +84,11 @@ export const Numeric: React.FC<NumericKeyboard> = ({ onAnswer, onHangup }) => {
                         onClick={handleAnswer}
                         className={`answer-button ${isCalling ? "hidden" : ""}`}
                     >
-
-                    <img src={icon} alt="Answering" className="answer-gif" />
+                        <img
+                            src={icon}
+                            alt="Answering"
+                            className="answer-gif"
+                        />
                     </button>
                     <button
                         onClick={handleHangup}
@@ -96,8 +99,8 @@ export const Numeric: React.FC<NumericKeyboard> = ({ onAnswer, onHangup }) => {
                 </div>
 
                 {isCalling && (
-                    <div className="calling-dot visible">
-                        Calling('.'.repeat(Math.floor(Date.now() / 500) % 4))
+                    <div className="calling-dots visible">
+                        Calling{".".repeat(Math.floor((Date.now() / 500) % 4))}
                     </div>
                 )}
             </div>
