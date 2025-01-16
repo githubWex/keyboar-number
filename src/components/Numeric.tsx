@@ -49,10 +49,36 @@ export const Numeric: React.FC<NumericKeyboard> = ({ onAnswer, onHangup }) => {
         "#",
     ];
 
+    const zoneCode = {
+        mx: +52,
+        us: +1,
+        ca: +1,
+        uk: +44,
+        de: +49,
+        es: +34,
+        it: +39,
+    }
+
     return (
         <>
             <div className={`keypad-container ${isCalling ? "calling" : ""}`}>
                 <div className="display-panel">
+
+                    <select
+                        name="country"
+                        id="country"
+                        className="country"
+                        onChange={(e) => setdisplayValue(zoneCode[e.target.value as keyof typeof zoneCode].toString())}
+                    >
+                        {Object.keys(zoneCode).map((code) => (
+                            <option key={code} value={code}>
+                                {code.toUpperCase()}
+                            </option>
+                        ))}
+                    </select>
+                    <span className="zone-code">
+                        {zoneCode["mx"]}
+                    </span>
                     <input
                         type="text"
                         value={displayValue}
@@ -67,13 +93,15 @@ export const Numeric: React.FC<NumericKeyboard> = ({ onAnswer, onHangup }) => {
                             Clear
                         </button>
                     )}
+
+
                 </div>
 
                 <div className={`keypad-grid ${isCalling ? "hidden" : ""}`}>
                     {buttons.map((btn) => (
                         <button
                             key={btn}
-                            onClick={() => handleNumberClick(btn[0])}
+                            onClick={() => handleNumberClick(btn)}
                         >
                             {btn}
                         </button>
