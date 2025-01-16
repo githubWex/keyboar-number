@@ -1,149 +1,161 @@
 #root {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 2rem;
-    text-align: center;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+}
+
+.keypad-container {
+  width: 300px;
+  padding: 20px;
+  background-color: #f0f0f0;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+}
+
+.keypad-container.calling {
+  background-color: #fff;
+}
+
+.display-panel {
+  margin-bottom: 20px;
+  display: flex;
+  gap: 10px;
+  transition: all 0.3s ease-in-out;
+}
+
+.display {
+  flex: 1;
+  padding: 10px;
+  font-size: 1.2rem;
+  text-align: right;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: white;
+  color: black;
+}
+
+.clear-button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.clear-button:hover {
+  background-color: #ff1a1a;
+}
+
+.keypad-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 20px;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.keypad-grid.hidden {
+  opacity: 0;
+  height: 0;
+  margin: 0;
+  pointer-events: none;
+}
+
+.keypad-button {
+  padding: 15px;
+  font-size: 1.5rem;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  color: black;
+}
+
+.keypad-button:hover {
+  background-color: #f5f5f5;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  transition: all 0.3s ease-in-out;
+}
+
+.answer-button,
+.hangup-button {
+  flex: 1;
+  padding: 12px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  color: white;
+  transition: all 0.3s ease-in-out;
+}
+
+.answer-button {
+  background-color: #4caf50;
+}
+
+.answer-button:hover {
+  background-color: #388e3c;
+}
+
+.answer-button.hidden {
+  opacity: 0;
+  width: 0;
+  padding: 0;
+  margin: 0;
+  pointer-events: none;
+}
+
+.hangup-button {
+  background-color: #f44336;
+}
+
+.hangup-button:hover {
+  background-color: #d32f2f;
+}
+
+.calling-dots {
+  display: none;
+  font-size: 1.5rem;
+  margin-top: 10px;
+  color: #666;
+}
+
+.calling-dots.visible {
+  display: block;
+  animation: dotsAnimation 1.5s infinite;
+}
+
+@keyframes dotsAnimation {
+  0% {
+    content: ".";
   }
-  
-  .app-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 2rem;
+  33% {
+    content: "..";
   }
-  
-  .keypad-container {
-    width: 300px;
-    padding: 20px;
-    background-color: #f0f0f0;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease-in-out;
+  66% {
+    content: "...";
   }
-  
-  .keypad-container.calling {
-    background-color: #fff;
+  100% {
+    content: ".";
   }
-  
-  .display-panel {
-    margin-bottom: 20px;
-    display: flex;
-    gap: 10px;
-    transition: all 0.3s ease-in-out;
-  }
-  
-  .display {
-    flex: 1;
-    padding: 10px;
-    font-size: 1.2rem;
-    text-align: right;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    background-color: white;
-    color: black;
-  }
-  
-  .clear-button {
-    padding: 10px 15px;
-    background-color: #ff9800;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-  }
-  
-  .clear-button:hover {
-    background-color: #f57c00;
-  }
-  
-  .keypad-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    margin-bottom: 20px;
-    transition: opacity 0.3s ease-in-out;
-  }
-  
-  .keypad-grid.hidden {
-    opacity: 0;
-    height: 0;
-    margin: 0;
-    pointer-events: none;
-  }
-  
-  .keypad-button {
-    padding: 15px;
-    font-size: 1.5rem;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-    color: black;
-  }
-  
-  .keypad-button:hover {
-    background-color: #f5f5f5;
-  }
-  
-  .action-buttons {
-    display: flex;
-    gap: 10px;
-    justify-content: space-between;
-    transition: all 0.3s ease-in-out;
-  }
-  
-  .answer-button,
-  .hangup-button {
-    flex: 1;
-    padding: 12px;
-    font-size: 1rem;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    color: white;
-    transition: all 0.3s ease-in-out;
-  }
-  
-  .answer-button {
-    background-color: #4caf50;
-  }
-  
-  .answer-button:hover {
-    background-color: #388e3c;
-  }
-  
-  .answer-button.hidden {
-    opacity: 0;
-    width: 0;
-    padding: 0;
-    margin: 0;
-    pointer-events: none;
-  }
-  
-  .hangup-button {
-    background-color: #f44336;
-  }
-  
-  .hangup-button:hover {
-    background-color: #d32f2f;
-  }
-  
-  .calling-dots {
-    display: none;
-    font-size: 1.5rem;
-    margin-top: 10px;
-    color: #666;
-  }
-  
-  .calling-dots.visible {
-    display: block;
-    animation: dotsAnimation 1.5s infinite;
-  }
-  
-  @keyframes dotsAnimation {
-    0% { content: '.'; }
-    33% { content: '..'; }
-    66% { content: '...'; }
-    100% { content: '.'; }
-  }
+}
